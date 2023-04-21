@@ -1,7 +1,12 @@
 function App() {
   return (
     <div className="App">
-      Photo
+      <header>
+        <div className="navbar">
+          <img src="https://iridescent-faloodeh-3725ab.netlify.app/assets/logo.png" alt="logo" />
+          <text>PhotoFolio</text>
+        </div>
+      </header>
     </div>
   );
 }
