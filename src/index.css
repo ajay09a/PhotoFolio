@@ -144,3 +144,10 @@ header{
     transition: .3s;
     width: 100%;
 }
+.single-album:hover{
+  border-color: #07f;
+  color: #fff;
+}
+.single-album:hover span{
+  background-color: #07f;
+}
