@@ -1,12 +1,15 @@
+import Album from "./Album";
+import logo from '../assets/logo.png';
 function App() {
   return (
     <div className="App">
       <header>
         <div className="navbar">
-          <img src="https://iridescent-faloodeh-3725ab.netlify.app/assets/logo.png" alt="logo" />
+          <img src={logo} alt="logo" />
           <text>PhotoFolio</text>
         </div>
       </header>
+      <Album />
     </div>
   );
 }
