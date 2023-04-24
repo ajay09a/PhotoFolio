@@ -1,6 +1,28 @@
-import React from 'react'
+import React, { useEffect} from 'react'
+import { firestore } from '../firebase';
 
-const CreateAlbum = ({setchangebutton, setchangebuttontext, setnewalbum}) => {
+const CreateAlbum = ({changebutton, changebuttontext, setchangebutton, setchangebuttontext, newalbum, setnewalbum, setposts}) => {
+    useEffect(()=>{
+        firestore.collection('album').get().then((snapshot)=>{
+        const post = snapshot.docs.map((doc)=>{
+            return {
+            id: doc.id,
+            ...doc.data()
+            }
+        });
+        setposts(post);
+        })
+    }, [])
+
+    const handlesubmit =(e)=>{
+        e.preventDefault();
+        console.log(newalbum);
+        firestore.collection('album').add({
+            Name: newalbum,
+            CreatedAt: new Date(),
+          })
+        setnewalbum("");
+    }
     const handleChangeButton= ()=>{
         changebutton==="false"?<>{setchangebutton("true")}{setchangebuttontext("Cancel")}</>:<>{setchangebutton("false")}{setchangebuttontext("Add album")}</>;
     }
@@ -9,15 +31,6 @@ const CreateAlbum = ({setchangebutton, setchangebuttontext, setnewalbum}) => {
         setnewalbum(e.target.value);
     }
     const clearNewAlbum =()=>{
-        setnewalbum("");
-    }
-    const handlesubmit =(e)=>{
-        e.preventDefault();
-        console.log(newalbum);
-        firestore.collection('album').add({
-            Name: newalbum,
-            CreatedAt: new Date(),
-          })
         setnewalbum("");
     }
   return (
