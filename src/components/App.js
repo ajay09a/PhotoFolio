@@ -1,14 +1,9 @@
 import Album from "./Album";
-import logo from '../assets/logo.png';
+import Navbar from "./Navbar";
 function App() {
   return (
     <div className="App">
-      <header>
-        <div className="navbar">
-          <img src={logo} alt="logo" />
-          <text>PhotoFolio</text>
-        </div>
-      </header>
+      <Navbar />
       <Album />
     </div>
   );
