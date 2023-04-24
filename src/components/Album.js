@@ -20,25 +20,7 @@ const Album = () => {
         })
     }, [])
 
-    const handleChangeButton= ()=>{
-        changebutton==="false"?<>{setchangebutton("true")}{setchangebuttontext("Cancel")}</>:<>{setchangebutton("false")}{setchangebuttontext("Add album")}</>;
-    }
-    const createNewAlbum = (e)=>{
-        e.preventDefault();
-        setnewalbum(e.target.value);
-    }
-    const clearNewAlbum =()=>{
-        setnewalbum("");
-    }
-    const handlesubmit =(e)=>{
-        e.preventDefault();
-        console.log(newalbum);
-        firestore.collection('album').add({
-            Name: newalbum,
-            CreatedAt: new Date(),
-          })
-        setnewalbum("");
-    }
+    
   return (
     <div className='album-list'>
         <CreateAlbum />
