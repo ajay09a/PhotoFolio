@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react'
-import picture from '../assets/picture.png';
+import AlbumList from './AlbumList';
 import { firestore } from '../firebase';
-import { Link } from 'react-router-dom';
 
 const Album = () => {
     const [changebutton, setchangebutton] = useState("false");
@@ -53,18 +52,7 @@ const Album = () => {
             <h3>Your albums</h3>
             <button className={changebutton} onClick={handleChangeButton}>{changebuttontext}</button>
         </div>
-        <div className='album-list-bottom'>
-            {
-            posts.map((post, index)=>{
-              return (<Link to={`/album/${post.id}`} key={index}>
-                        <div className='single-album'>
-                            <img src={picture} alt='album' />
-                            <span>{post.Name}</span>
-                        </div>
-                    </Link>)
-            })
-          }
-        </div>
+        <AlbumList posts={posts} />
     </div>
   )
 }
