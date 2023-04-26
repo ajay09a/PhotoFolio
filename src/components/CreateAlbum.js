@@ -7,12 +7,12 @@ const CreateAlbum = ({changebutton, changebuttontext, setchangebutton, setchange
     useEffect(()=>{
         const unsub = onSnapshot(collection(db, 'album'), (snapshot)=>{
             const post = snapshot.docs.map((doc)=>{
-            return {
-            id: doc.id,
-            ...doc.data()
-            }
-        });
-        setposts(post);
+                return {
+                id: doc.id,
+                ...doc.data()
+                }
+            });
+            setposts(post);
         })
         // firestore.collection('album').get().then((snapshot)=>{
         // const post = snapshot.docs.map((doc)=>{
