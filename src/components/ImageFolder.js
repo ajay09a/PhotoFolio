@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import {firestore} from '../firebase';
+import AddImage from './AddImage';
 
 const ImageFolder = () => {
     const [post, setpost] = useState({});
@@ -11,7 +12,9 @@ const ImageFolder = () => {
     })
   }, [])
   return (
-    <div>{post.Name}</div>
+    <div>
+        <AddImage path={post.Name} />
+    </div>
   )
 }
 
