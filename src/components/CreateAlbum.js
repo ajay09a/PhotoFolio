@@ -1,10 +1,12 @@
 import React, { useEffect} from 'react'
 import { firestore } from '../firebase';
+import {db} from '../firebase';
+import {collection, doc, onSnapshot} from 'firebase/firestore'
 
 const CreateAlbum = ({changebutton, changebuttontext, setchangebutton, setchangebuttontext, newalbum, setnewalbum, setposts}) => {
     useEffect(()=>{
-        firestore.collection('album').get().then((snapshot)=>{
-        const post = snapshot.docs.map((doc)=>{
+        const unsub = onSnapshot(collection(db, 'album'), (snapshot)=>{
+            const post = snapshot.docs.map((doc)=>{
             return {
             id: doc.id,
             ...doc.data()
@@ -12,6 +14,15 @@ const CreateAlbum = ({changebutton, changebuttontext, setchangebutton, setchange
         });
         setposts(post);
         })
+        // firestore.collection('album').get().then((snapshot)=>{
+        // const post = snapshot.docs.map((doc)=>{
+        //     return {
+        //     id: doc.id,
+        //     ...doc.data()
+        //     }
+        // });
+        // setposts(post);
+        // })
     }, [])
 
     const handlesubmit =(e)=>{
