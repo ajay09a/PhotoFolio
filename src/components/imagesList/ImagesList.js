@@ -72,22 +72,6 @@ export const ImagesList = ({ albumId, albumName, onBack }) => {
   };
   const handleCancel = () => setActiveImageIndex(null);
 
-  const handleSearchClick = () => {
-    if (searchIntent) {
-      searchInput.current.value = "";
-      getImages();
-    }
-    setSearchIntent(!searchIntent);
-  };
-
-  const handleSearch = async () => {
-    const query = searchInput.current.value;
-    if (!query) return IMAGES;
-
-    const filteredImages = IMAGES.filter((i) => i.title.includes(query));
-    setImages(filteredImages);
-  };
-
   // async functions
   const handleAdd = async ({ title, url }) => {
     setImgLoading(true);
@@ -184,21 +168,6 @@ export const ImagesList = ({ albumId, albumName, onBack }) => {
         </span>
         <h3>Images in {albumName}</h3>
 
-        <div>
-          {searchIntent && (
-            <input
-              placeholder="Search..."
-              onChange={handleSearch}
-              ref={searchInput}
-              autoFocus={true}
-            />
-          )}
-          <img
-            onClick={handleSearchClick}
-            src={!searchIntent ? "/assets/search.png" : "/assets/clear.png"}
-            alt="clear"
-          />
-        </div>
         {updateImageIntent && (
           <button
             onClick={() => setUpdateImageIntent(false)}
@@ -252,7 +221,7 @@ export const ImagesList = ({ albumId, albumName, onBack }) => {
                 src={image.url}
                 alt={image.title}
                 onError={({ currentTarget }) => {
-                  currentTarget.src = "/assets/warning.png";
+                  currentTarget.src = "https://www.pngmart.com/files/17/Caution-Warning-PNG-Clipart.png";
                 }}
               />
               <span>{image.title.substring(0, 20)}</span>
