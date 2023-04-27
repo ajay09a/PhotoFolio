@@ -20,9 +20,6 @@ import {
 } from "firebase/firestore";
 import { db } from "../../firebase";
 
-// storing images
-let IMAGES;
-
 // mock data
 // import { imagesData } from "../../static/mock";
 
@@ -30,7 +27,6 @@ export const ImagesList = ({ albumId, albumName, onBack }) => {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const [searchIntent, setSearchIntent] = useState(false);
   const searchInput = useRef();
 
   // async function
@@ -45,7 +41,6 @@ export const ImagesList = ({ albumId, albumName, onBack }) => {
       ...doc.data(),
     }));
     setImages(imagesData);
-    IMAGES = imagesData;
     setLoading(false);
   };
 
@@ -127,6 +122,7 @@ export const ImagesList = ({ albumId, albumName, onBack }) => {
           </span>
           <h3>No images found in the album.</h3>
           <button
+            className={addImageIntent ? "active" : null}
             onClick={() => setAddImageIntent(!addImageIntent)}
           >
             {!addImageIntent ? "Add image" : "Cancel"}
@@ -177,6 +173,7 @@ export const ImagesList = ({ albumId, albumName, onBack }) => {
         )}
         {!updateImageIntent && (
           <button
+            className={addImageIntent ? "active" : null}
             onClick={() => setAddImageIntent(!addImageIntent)}
           >
             {!addImageIntent ? "Add image" : "Cancel"}

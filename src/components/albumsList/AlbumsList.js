@@ -72,7 +72,9 @@ export const AlbumsList = () => {
       <>
         <div className="top">
           <h3>No albums found.</h3>
-          <button onClick={() => setCreateAlbumIntent(!createAlbumIntent)}>
+          <button
+            className={createAlbumIntent ? "active" : null}
+            onClick={() => setCreateAlbumIntent(!createAlbumIntent)}>
             {!createAlbumIntent ? "Add album" : "Cancel"}
           </button>
         </div>
